@@ -1,7 +1,10 @@
 package com.devsuperior.sistemaevento.entities;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -13,6 +16,10 @@ public class Categoria {
     private Integer id;
     @Column(columnDefinition = "TEXT")
     private String descricao;
+
+    //RELACIONAMENO UM-PARA-MUITOS
+    @OneToMany(mappedBy = "categoria")
+    Set<Atividade> atividades = new HashSet<>();
 
 
     //CONSTRUTORES
@@ -40,6 +47,10 @@ public class Categoria {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Set<Atividade> getAtividades() {
+        return atividades;
     }
 
 

@@ -17,6 +17,11 @@ public class Atividade {
     private String descricao;
     private Double preco;
 
+    //RELACIONAMENTO MUITOS-PARA-UM
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    Categoria categoria;
+
 
     //CONSTRUTORES
     public Atividade() {
