@@ -2,7 +2,9 @@ package com.devsuperior.sistemaevento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_participante")
@@ -15,6 +17,10 @@ public class Participante {
     private String nome;
     @Column(unique = true)
     private String email;
+
+    //RELACIONAMENTO MUITOS PARA MUITOS COM ATIVIDADE
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Atividade> atividades = new HashSet<>();
 
 
     //CONSTRUTORES
@@ -51,6 +57,10 @@ public class Participante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Atividade> getAtividades() {
+        return atividades;
     }
 
 

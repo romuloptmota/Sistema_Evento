@@ -2,7 +2,9 @@ package com.devsuperior.sistemaevento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -17,11 +19,17 @@ public class Atividade {
     private String descricao;
     private Double preco;
 
-    //RELACIONAMENTO MUITOS-PARA-UM
+    //RELACIONAMENTO MUITOS-PARA-UM COM CATEGORIA
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     Categoria categoria;
 
+    //RELACIONAMENTO MUITOS-PARA-MUITOS COM PARTICIPANTE
+    @ManyToMany
+    @JoinTable(name = "tb_atividade_participante",
+    joinColumns = @JoinColumn(name = "atividade_id"),
+    inverseJoinColumns = @JoinColumn(name = "participante_id"))
+    private Set<Participante> participantes;
 
     //CONSTRUTORES
     public Atividade() {
@@ -68,6 +76,13 @@ public class Atividade {
         this.preco = preco;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
+    }
 
     //EQUALS HASHCODE
     @Override
