@@ -29,6 +29,11 @@ public class Bloco {
         this.fim = fim;
     }
 
+    //RELACIONAMENTO MUITOS-PARA-UM COM BLOCO
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
+    private Atividade atividade;
+
 
     //GETTER E SETTER
     public Integer getId() {
@@ -53,6 +58,10 @@ public class Bloco {
 
     public void setFim(Instant fim) {
         this.fim = fim;
+    }
+
+    public Atividade getAtividade() {
+        return atividade;
     }
 
 

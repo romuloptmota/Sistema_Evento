@@ -2,6 +2,7 @@ package com.devsuperior.sistemaevento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -30,6 +31,11 @@ public class Atividade {
     joinColumns = @JoinColumn(name = "atividade_id"),
     inverseJoinColumns = @JoinColumn(name = "participante_id"))
     private Set<Participante> participantes;
+
+    //RELACIONAMENTO UM-PARA-MUTOS
+    @OneToMany(mappedBy = "atividade")
+    private Set<Bloco> blocos = new HashSet<>();
+
 
     //CONSTRUTORES
     public Atividade() {
@@ -83,6 +89,11 @@ public class Atividade {
     public Set<Participante> getParticipantes() {
         return participantes;
     }
+
+    public Set<Bloco> getBlocos() {
+        return blocos;
+    }
+
 
     //EQUALS HASHCODE
     @Override
