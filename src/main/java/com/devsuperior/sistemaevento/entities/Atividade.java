@@ -2,10 +2,7 @@ package com.devsuperior.sistemaevento.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -30,11 +27,11 @@ public class Atividade {
     @JoinTable(name = "tb_atividade_participante",
     joinColumns = @JoinColumn(name = "atividade_id"),
     inverseJoinColumns = @JoinColumn(name = "participante_id"))
-    private Set<Participante> participantes;
+    private Set<Participante> participantes = new HashSet<>();
 
     //RELACIONAMENTO UM-PARA-MUTOS
     @OneToMany(mappedBy = "atividade")
-    private Set<Bloco> blocos = new HashSet<>();
+    private List<Bloco> blocos = new ArrayList<>();
 
 
     //CONSTRUTORES
@@ -90,7 +87,7 @@ public class Atividade {
         return participantes;
     }
 
-    public Set<Bloco> getBlocos() {
+    public List<Bloco> getBlocos() {
         return blocos;
     }
 

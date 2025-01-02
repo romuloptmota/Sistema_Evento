@@ -17,7 +17,7 @@ public class Categoria {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    //RELACIONAMENO UM-PARA-MUITOS
+    //RELACIONAMENO UM-PARA-MUITOS COM ATIVIDADE
     @OneToMany(mappedBy = "categoria")
     Set<Atividade> atividades = new HashSet<>();
 
